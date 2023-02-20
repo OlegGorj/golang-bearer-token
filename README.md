@@ -2,7 +2,7 @@
 
 
 Bearer token authentication for APIs is a way to ensure that only authorized users can access specific API endpoints. 
-Here's a simple explanation of how it works:
+Here's a simple explanation of how the workflow works:
 
 1. The user logs in to the API using their username and password. This part implements authentication workflow against some trusted backend e.g. AD, etc.
 2. If the login is successful, the API generates a unique "bearer token" for the user and sends it back in the response.
@@ -42,6 +42,17 @@ If a token is stolen, an attacker can use it to impersonate the user and perform
 This is why it's important to keep the token secure and to use short expiration times to limit the window of vulnerability.
 
 Having said all the above, my personal view that Bearer authentication should be used in fairly simple workflows that does not require presence of Central Authority to expire token on-demand.
+
+### Bearer token with claims
+
+One more point to mention - Bearer token authentication can be used with claims to provide additional security and functionality. This is very convent for some use cases.
+
+In a nutshell, **claims** are pieces of information that are attached to a bearer token to provide additional context about the user or the application. 
+For instance, you might include a user's role or permissions as a claim, which would allow you to restrict access to certain API endpoints based on the user's role (classics: User vs Admin).
+
+To include claims in a bearer token, you typically encode them as a JSON Web Token (JWT). A JWT is a compact, URL-safe way of representing claims as a JSON object. 
+The JWT includes the claims in the payload, along with a signature to ensure the integrity of the token.
+A simple application using JWT auth flow: https://github.com/OlegGorj/golang-jwt-token
 
 
 ## A super simple app to implement Bearer token auth flow.
