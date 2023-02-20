@@ -2,7 +2,7 @@
 
 
 Bearer token authentication for APIs is a way to ensure that only authorized users can access specific API endpoints. 
-Here's a simple explanation of how the workflow works:
+Here's a very simple explanation of how the workflow works:
 
 1. The user logs in to the API using their username and password. This part implements authentication workflow against some trusted backend e.g. AD, etc.
 2. If the login is successful, the API generates a unique "bearer token" for the user and sends it back in the response.
@@ -28,12 +28,13 @@ The pros:
 
 - Bearer tokens are easy to implement and use. You just need to include the token in the Authorization header of your HTTP requests, and you're good to go. No need to worry about sessions or cookies.
 - Bearer tokens are great for stateless environments like RESTful APIs, where you don't want to keep track of session information on the server. This makes them perfect for scaling out to handle a large number of clients.
-- Bearer tokens are good for long-lived sessions. Since the token is stored on the client side, the server doesn't need to maintain any state. This means that the user can keep the same token for a long time without having to re-authenticate.
+- Bearer tokens are good for long-lived sessions (see caveat down below). Since the token is stored on the client side, the server doesn't need to maintain any state. 
+This means that the user can keep the same token for a long time without having to re-authenticate.
 - Bearer tokens are versatile. They can be used in a variety of scenarios, such as mobile apps, web apps, and APIs.
 
 Now, for the cons:
 
-- Bearer tokens can be vulnerable to attacks like interception, replay, and theft if not implemented securely. It's important to use HTTPS encryption to protect the token during transmission, and to store the token securely on the client side.
+- As mentioned earlier, Bearer tokens can be vulnerable to attacks like interception, replay, and theft if not implemented securely. It's important to use HTTPS encryption to protect the token during transmission, and to store the token securely on the client side.
 - Bearer tokens can't be revoked. Once a token is issued, it's valid until it expires. You could set very short life-span for it 
 but if you want to revoke a token, you'll need to wait for it to expire or change the secret key that's used to sign the tokens. 
 This can be a bit of a hassle.
