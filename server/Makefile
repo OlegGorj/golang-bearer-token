@@ -12,7 +12,7 @@ clean:
 	rm -f ./${BINARY_NAME}
 
 init:
-	go mod init jwt_server
+	go mod init bearer_server
 	go mod tidy
 
 install:

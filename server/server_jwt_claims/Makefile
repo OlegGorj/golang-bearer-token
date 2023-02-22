@@ -2,7 +2,7 @@ UNAME=`uname | tr '[:upper:]' '[:lower:]'`
 RELEASE=0.0.1
 BUILD_NUMBER=1
 
-BINARY_NAME=client
+BINARY_NAME=server
 
 BUILD_ARCH=amd64
 OS=${UNAME}
@@ -12,7 +12,7 @@ clean:
 	rm -f ./${BINARY_NAME}
 
 init:
-	go mod init bearer_server
+	go mod init bearer_jwt_server
 	go mod tidy
 
 install:
