@@ -11,7 +11,7 @@ import (
 // Define the secret key for signing and verifying tokens
 var secret = []byte("my_secret_key")
 
-// Define a custom Claims type that includes user information
+// Claims -- Define a custom Claims type that includes user information
 type Claims struct {
 	UserID string `json:"user_id"`
 	Name   string `json:"name"`
@@ -19,7 +19,7 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-// Define an HTTP endpoint for user login
+// loginHandler -- Define an HTTP endpoint for user login
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	var user User
 	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
@@ -45,7 +45,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// Define an HTTP endpoint that requires authentication
+// dataHandler -- Define an HTTP endpoint that requires authentication
 func dataHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the Authorization header to extract the token
 	tokenString := r.Header.Get("Authorization")
@@ -81,7 +81,7 @@ func dataHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Generate a JWT token with claims
+// generateToken -- Generate a JWT token with claims
 func generateToken(userID, name string, isAdmin bool) (string, error) {
 	claims := &Claims{
 		UserID: userID,
