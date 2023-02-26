@@ -11,6 +11,17 @@ import (
 // Define the secret key for signing and verifying tokens
 var secret = []byte("my_secret_key")
 
+type User struct {
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type AuthResponse struct {
+	Token string `json:"token"`
+}
+
 // Claims -- Define a custom Claims type that includes user information
 type Claims struct {
 	UserID string `json:"user_id"`
